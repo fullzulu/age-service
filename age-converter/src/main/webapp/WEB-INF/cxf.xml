@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+						http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+	<jaxws:endpoint id="ageServiceS" implementor="wkl.training.ws.age_converter.ws.impl.AgeService" 
+		address="/age-service-soap" />
+		
+	<bean id="ageserviceclass" class="wkl.training.ws.age_converter.ws.impl.AgeService" />
+	<jaxrs:server id="ageServiceR" address="/rest">
+		<jaxrs:serviceBeans>
+			<ref bean="ageserviceclass" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="org.apache.cxf.jaxrs.provider.json.JSONProvider">
+				<property name="dropRootElement" value="true" />
+				<property name="supportUnwrapped" value="true" />
+			</bean>
+		</jaxrs:providers>
+	</jaxrs:server>
+
+</beans>
