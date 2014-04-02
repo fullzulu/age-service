@@ -4,7 +4,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import org.apache.log4j.LogManager;
@@ -28,7 +27,7 @@ public class AgeService implements IAgeService{
 	 * 
 	 * @return age of the man
 	 */
-	public ConvertObject getAge(@WebParam(name="date")String date) throws InvalidDateException {
+	public ConvertObject getAge(String date) throws InvalidDateException {
 		try{
 			log.info("Entered date: " + date);
 			

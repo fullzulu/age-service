@@ -2,6 +2,7 @@ package wkl.training.ws.age_converter.ws;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -19,5 +20,5 @@ public interface IAgeService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{date}")
 	@WebMethod
-	public ConvertObject getAge(@PathParam("date")@WebParam(name="date") String name) throws InvalidDateException;
+	public @WebResult(name="result")ConvertObject getAge(@WebParam(name="date") @PathParam("date") String date) throws InvalidDateException;
 }
